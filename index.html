@@ -42,9 +42,12 @@
       });
     </script>
 
+
 </head>
 <body>
 LEAD CAPTURE FORM
+
+
 <style>
     .form-input {
         width: 100%;
@@ -88,6 +91,7 @@ LEAD CAPTURE FORM
 <div class="form-container">
     <form id="webinar-registration-form">
         <label for="first_name">Name</label><input type="text" id="webinar-registration-form-first_name" name="first_name" placeholder="" required="false" class="form-input" >
+        <label for="email">email</label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
         <button type="submit" id="webinar-registration-form-submit" class="form-submit-btn form-submit-btn-contained">Submit</button>
     </form>
 </div>
@@ -101,9 +105,12 @@ LEAD CAPTURE FORM
   function submitForm(e) {
     e.preventDefault();
     const first_name_value = document.getElementById('webinar-registration-form-first_name').value;
+    const email_value = document.getElementById('webinar-registration-form-email').value;
     var link = `https://api.smartdataprocessor.com/leadintake-test?id=${id}&siteId=${siteid}&type=api&lName=NA`;
     link = link + '&fName=' + first_name_value;
+    link = link + '&email=' + email_value;
     localStorage.setItem('fName', first_name_value);
+    localStorage.setItem('email', email_value);
 
     var searchParams = (new URL(link)).searchParams;
 
