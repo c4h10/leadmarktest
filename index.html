@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>LeadMarkTest</title>
 
+
     <script>
       const qString = new URLSearchParams(window.location.search);
       var id;
@@ -43,10 +44,10 @@
     </script>
 
 
+
 </head>
 <body>
-webinar -neu
-
+lead
 <style>
     .form-input {
         width: 100%;
@@ -94,20 +95,21 @@ webinar -neu
     </form>
 </div>
 <script type="text/javascript">
+  var location;
   window.addEventListener("load", function() {
-    const form = document.getElementById("webinar-registration-form");
+    var form = document.getElementById("webinar-registration-form");
     form.addEventListener('submit', submitForm);
   });
 
   function submitForm(e) {
     e.preventDefault();
     const email_value = document.getElementById('webinar-registration-form-email').value;
-    let link = `https://api.smartdataprocessor.com/leadintake-test?id=${id}&fName=Trader&lName=NA`;
+    var link = `https://api.smartdataprocessor.com/leadintake-test?id=${id}&siteId=${siteid}&type=api&fName=Trader&lName=NA`;
     link = link + '&email=' + email_value;
     localStorage.setItem('email', email_value);
 
-    let apiLink = link + (link.includes('?') ? '&type=api' : '?type=api');
-    var searchParams = (new URL(apiLink)).searchParams;
+    var searchParams = (new URL(link)).searchParams;
+
     const data = {
       ...Object.fromEntries(searchParams),
       ...ipData,
@@ -116,20 +118,20 @@ webinar -neu
       location:window.location.href
     };
 
-    fetch(apiLink, {
+    fetch(link, {
       method: 'POST',
       mode: 'no-cors',
       body: JSON.stringify(data)
     }).then(res => {
-      window.location.href = link;
+      window.location.href = "ddd";
     })
       .catch((e) => {
         console.error(e);
-        window.location.href = link;
+        window.location.href = "ddd";
       });
-
 
   }
 </script>
+
 </body>
 </html>
