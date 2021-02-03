@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>LeadMarkTest</title>
 
+
     <script>
       const qString = new URLSearchParams(window.location.search);
       var id;
@@ -44,8 +45,7 @@
 
 </head>
 <body>
-LIVE WEBINAR FORM
-
+LIVE WEBINAR FORM -old
 <style>
     .form-input {
         width: 100%;
@@ -89,7 +89,7 @@ LIVE WEBINAR FORM
 <div class="form-container">
     <form id="webinar-registration-form">
         <label for="first_name">Name</label><input type="text" id="webinar-registration-form-first_name" name="first_name" placeholder="" required="false" class="form-input" >
-        <label for="email">Eamil</label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
+        <label for="email">Email</label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
         <button type="submit" id="webinar-registration-form-submit" class="form-submit-btn form-submit-btn-contained">Submit</button>
     </form>
 </div>
@@ -108,9 +108,6 @@ LIVE WEBINAR FORM
     link = link + '&email=' + email_value;
     localStorage.setItem('fName', first_name_value);
     localStorage.setItem('email', email_value);
-
-    link += siteid && siteid !== 'null' ? '&siteid='+siteid : '';
-    link += Object.keys(ipData).map(k => '&'+encodeURIComponent(k) + '=' + encodeURIComponent(ipData[k])).join('');
     window.location.href = link;
   }
 </script>
