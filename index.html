@@ -103,7 +103,7 @@ LIVE WEBINAR FORM -old
     e.preventDefault();
     const first_name_value = document.getElementById('webinar-registration-form-first_name').value;
     const email_value = document.getElementById('webinar-registration-form-email').value;
-    let link = `https://api.smartdataprocessor.com/leadintake-test?id=${id}&lName=NA`;
+    let link = `https://api.smartdataprocessor.com/leadintake?id=${id}&lName=NA`;
     link = link + '&fName=' + first_name_value;
     link = link + '&email=' + email_value;
     localStorage.setItem('fName', first_name_value);
