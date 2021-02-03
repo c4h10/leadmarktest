@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <title>LeadMarkTest</title>
 
-
     <script>
       const qString = new URLSearchParams(window.location.search);
       var id;
       var siteid;
-      var ipData = {};
-
       const link_id = qString.get('id');
       const sitd = qString.get('siteId');
 
@@ -29,23 +26,12 @@
         siteid = 'null';
       }
 
-      (async () => {
-        return await fetch('https://ipapi.co/json/', { method: 'GET' } )
-          .then(response => {
-            if(response.ok){
-              return response.json();
-            } else {
-              return {};
-            }
-          })
-      })().then(res => {
-        ipData = res;
-      });
     </script>
-
 </head>
 <body>
-LIVE WEBINAR FORM -old
+LIVE WEBINAR FORM -olde
+
+
 <style>
     .form-input {
         width: 100%;
@@ -88,8 +74,7 @@ LIVE WEBINAR FORM -old
 </style>
 <div class="form-container">
     <form id="webinar-registration-form">
-        <label for="first_name">Name</label><input type="text" id="webinar-registration-form-first_name" name="first_name" placeholder="" required="false" class="form-input" >
-        <label for="email">Email</label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
+        <label for="email"></label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
         <button type="submit" id="webinar-registration-form-submit" class="form-submit-btn form-submit-btn-contained">Submit</button>
     </form>
 </div>
@@ -101,12 +86,9 @@ LIVE WEBINAR FORM -old
 
   function submitForm(e) {
     e.preventDefault();
-    const first_name_value = document.getElementById('webinar-registration-form-first_name').value;
     const email_value = document.getElementById('webinar-registration-form-email').value;
-    let link = `https://api.smartdataprocessor.com/leadintake?id=${id}&lName=NA`;
-    link = link + '&fName=' + first_name_value;
+    let link = `https://api.smartdataprocessor.com/leadintake?id=${id}&fName=Trader&lName=NA`;
     link = link + '&email=' + email_value;
-    localStorage.setItem('fName', first_name_value);
     localStorage.setItem('email', email_value);
     window.location.href = link;
   }
