@@ -42,9 +42,10 @@
       });
     </script>
 
+
 </head>
 <body>
-webinar
+webinar -neu
 
 <style>
     .form-input {
@@ -105,9 +106,29 @@ webinar
     link = link + '&email=' + email_value;
     localStorage.setItem('email', email_value);
 
-    link += siteid && siteid !== 'null' ? '&siteid='+siteid : '';
-    link += Object.keys(ipData).map(k => '&'+encodeURIComponent(k) + '=' + encodeURIComponent(ipData[k])).join('');
-    window.location.href = link;
+    let apiLink = link + (link.includes('?') ? '&type=api' : '?type=api');
+    var searchParams = (new URL(apiLink)).searchParams;
+    const data = {
+      ...Object.fromEntries(searchParams),
+      ...ipData,
+      id,
+      ...(siteid && siteid !== 'null' ? {siteid: siteid} : {}),
+      location:window.location.href
+    };
+
+    fetch(apiLink, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(data)
+    }).then(res => {
+      window.location.href = link;
+    })
+      .catch((e) => {
+        console.error(e);
+        window.location.href = link;
+      });
+
+
   }
 </script>
 </body>
