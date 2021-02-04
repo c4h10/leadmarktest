@@ -5,6 +5,7 @@
     <title>LeadMarkTest</title>
 
 
+
     <script>
       const qString = new URLSearchParams(window.location.search);
       var id;
@@ -32,8 +33,7 @@
 
 </head>
 <body>
-tyty
-
+ddd
 <style>
     .form-input {
         width: 100%;
@@ -78,7 +78,7 @@ tyty
     <form id="webinar-registration-form">
         <label for="first_name"></label><input type="text" id="webinar-registration-form-first_name" name="first_name" placeholder="" required="false" class="form-input" >
         <label for="last_name"></label><input type="text" id="webinar-registration-form-last_name" name="last_name" placeholder="" required="false" class="form-input" >
-        <label for="email"></label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
+        <label for="full_name"></label><input type="text" id="webinar-registration-form-full_name" name="full_name" placeholder="" required="false" class="form-input" >
         <button type="submit" id="webinar-registration-form-submit" class="form-submit-btn form-submit-btn-contained">Submit</button>
     </form>
 </div>
@@ -92,20 +92,20 @@ tyty
     e.preventDefault();
     const first_name_value = document.getElementById('webinar-registration-form-first_name').value;
     const last_name_value = document.getElementById('webinar-registration-form-last_name').value;
-    const email_value = document.getElementById('webinar-registration-form-email').value;
+    const full_name_value = document.getElementById('webinar-registration-form-full_name').value;
     let link = `https://api.smartdataprocessor.com/leadintake?id=${id}&siteId=${siteid}&type=api`;
-    let redirectLink = "https://www.google.com";
+    let redirectLink = "https://www.google.pl";
     let tyParams = '';
     link = link + '&fName=' + first_name_value;
     link = link + '&lName=' + last_name_value;
-    link = link + '&email=' + email_value;
+    link = link + '&full_name=' + full_name_value;
     tyParams = tyParams + '&fName=' + first_name_value;
-    tyParams = tyParams + '&lName=' + last_name_value;
 
+    tyParams = tyParams + '&full_name=' + full_name_value;
     localStorage.setItem('fName', first_name_value);
     localStorage.setItem('lName', last_name_value);
-    localStorage.setItem('email', email_value);
-    redirectLink = redirectLink + redirectLink.search('?') > -1 ? tyParams : '?' + tyParams.substring(1);
+    localStorage.setItem('full_name', full_name_value);
+    redirectLink = redirectLink + redirectLink.search(/?/)  > -1 ? tyParams : '?' + tyParams.substring(1);
     fetch(link, { method: 'GET', mode: 'no-cors'} )
       .then(res => {
         window.location.href = redirectLink;
