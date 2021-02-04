@@ -33,7 +33,7 @@
 
 </head>
 <body>
-dddss
+hmmm
 <style>
     .form-input {
         width: 100%;
@@ -93,7 +93,7 @@ dddss
     const first_name_value = document.getElementById('webinar-registration-form-first_name').value;
     const last_name_value = document.getElementById('webinar-registration-form-last_name').value;
     const full_name_value = document.getElementById('webinar-registration-form-full_name').value;
-    let link = `https://api.smartdataprocessor.com/leadintake?id=${id}&siteId=${siteid}&type=api`;
+    let link = `https://api.smartdataprocessor.com/leadintake-test?id=${id}&siteId=${siteid}&type=api`;
     let redirectLink = "https://www.google.pl";
     let tyParams = '';
     link = link + '&fName=' + first_name_value;
@@ -106,6 +106,7 @@ dddss
     localStorage.setItem('lName', last_name_value);
     localStorage.setItem('full_name', full_name_value);
     redirectLink = redirectLink + redirectLink.search(/\?/)  > -1 ? tyParams : '?' + tyParams.substring(1);
+    console.log(redirectLink);
     fetch(link, { method: 'GET', mode: 'no-cors'} )
       .then(res => {
         window.location.href = redirectLink;
