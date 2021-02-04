@@ -9,8 +9,6 @@
       const qString = new URLSearchParams(window.location.search);
       var id;
       var siteid;
-      var ipData = {};
-
       const link_id = qString.get('id');
       const sitd = qString.get('siteId');
 
@@ -29,26 +27,12 @@
         siteid = 'null';
       }
 
-      (async () => {
-        return await fetch('https://ipapi.co/json/', { method: 'GET' } )
-          .then(response => {
-            if(response.ok){
-              return response.json();
-            } else {
-              return {};
-            }
-          })
-      })().then(res => {
-        ipData = res;
-      });
     </script>
-
-
 
 
 </head>
 <body>
-DDD
+tyty
 
 <style>
     .form-input {
@@ -92,7 +76,9 @@ DDD
 </style>
 <div class="form-container">
     <form id="webinar-registration-form">
-        <label for="email">Email new</label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
+        <label for="first_name"></label><input type="text" id="webinar-registration-form-first_name" name="first_name" placeholder="" required="false" class="form-input" >
+        <label for="last_name"></label><input type="text" id="webinar-registration-form-last_name" name="last_name" placeholder="" required="false" class="form-input" >
+        <label for="email"></label><input type="email" id="webinar-registration-form-email" name="email" placeholder="" required="false" class="form-input" >
         <button type="submit" id="webinar-registration-form-submit" class="form-submit-btn form-submit-btn-contained">Submit</button>
     </form>
 </div>
@@ -104,36 +90,31 @@ DDD
 
   function submitForm(e) {
     e.preventDefault();
+    const first_name_value = document.getElementById('webinar-registration-form-first_name').value;
+    const last_name_value = document.getElementById('webinar-registration-form-last_name').value;
     const email_value = document.getElementById('webinar-registration-form-email').value;
-    let link = `https://api.smartdataprocessor.com/leadintake-test?id=${id}&fName=Trader&lName=NA`;
+    let link = `https://api.smartdataprocessor.com/leadintake?id=${id}&siteId=${siteid}&type=api`;
+    let redirectLink = "https://www.google.com";
+    let tyParams = '';
+    link = link + '&fName=' + first_name_value;
+    link = link + '&lName=' + last_name_value;
     link = link + '&email=' + email_value;
+    tyParams = tyParams + '&fName=' + first_name_value;
+    tyParams = tyParams + '&lName=' + last_name_value;
+
+    localStorage.setItem('fName', first_name_value);
+    localStorage.setItem('lName', last_name_value);
     localStorage.setItem('email', email_value);
-
-    let apiLink = link + (link.includes('?') ? '&type=api' : '?type=api');
-    var searchParams = (new URL(apiLink)).searchParams;
-    const data = {
-      ...Object.fromEntries(searchParams),
-      ...ipData,
-      id,
-      ...(siteid && siteid !== 'null' ? {siteid: siteid} : {}),
-      location:window.location.href
-    };
-
-    fetch(apiLink, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify(data)
-    }).then(res => {
-      window.location.href = link;
-    })
+    redirectLink = redirectLink + redirectLink.search('?') > -1 ? tyParams : '?' + tyParams.substring(1);
+    fetch(link, { method: 'GET', mode: 'no-cors'} )
+      .then(res => {
+        window.location.href = redirectLink;
+      })
       .catch((e) => {
         console.error(e);
-        window.location.href = link;
+        window.location.href = redirectLink;
       });
-
-
   }
 </script>
-
 </body>
 </html>
