@@ -105,10 +105,11 @@ hmmm
     localStorage.setItem('fName', first_name_value);
     localStorage.setItem('lName', last_name_value);
     localStorage.setItem('full_name', full_name_value);
-    redirectLink = redirectLink + redirectLink.search(/\?/)  > -1 ? tyParams : '?' + tyParams.substring(1);
+    redirectLink = redirectLink + (redirectLink.search(/\?/)  > -1 ? tyParams : '?' + tyParams.substring(1));
     console.log(redirectLink);
     fetch(link, { method: 'GET', mode: 'no-cors'} )
       .then(res => {
+
         window.location.href = redirectLink;
       })
       .catch((e) => {
