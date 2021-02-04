@@ -33,7 +33,7 @@
 
 </head>
 <body>
-ddd
+dddss
 <style>
     .form-input {
         width: 100%;
@@ -105,7 +105,7 @@ ddd
     localStorage.setItem('fName', first_name_value);
     localStorage.setItem('lName', last_name_value);
     localStorage.setItem('full_name', full_name_value);
-    redirectLink = redirectLink + redirectLink.search(/?/)  > -1 ? tyParams : '?' + tyParams.substring(1);
+    redirectLink = redirectLink + redirectLink.search(/\?/)  > -1 ? tyParams : '?' + tyParams.substring(1);
     fetch(link, { method: 'GET', mode: 'no-cors'} )
       .then(res => {
         window.location.href = redirectLink;
